@@ -1,0 +1,2 @@
+# qbc_cominvsys
+SISTEMA DE INVENTARIO INFORMATICO
