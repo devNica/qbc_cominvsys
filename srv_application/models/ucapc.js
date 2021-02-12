@@ -1,26 +1,29 @@
-'use strict';
-const {Model} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class ucapc extends Model {
     static associate(models) {
       ucapc.hasMany(models.dispositivo, {
-        foreignKey: "FK_UCAPC"
-      });  
+        foreignKey: "FK_UCAPC",
+      });
     }
-  };
-  ucapc.init({
-    IDUCAPC: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
+  }
+  ucapc.init(
+    {
+      IDUCAPC: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      UNIDAD: DataTypes.STRING,
     },
-    UNIDAD: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'ucapc',
-    freezeTableName: true,
-    timestamps: false
-  });
+    {
+      sequelize,
+      modelName: "ucapc",
+      freezeTableName: true,
+      timestamps: false,
+    }
+  );
   return ucapc;
 };
