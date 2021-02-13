@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
@@ -22,7 +23,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   catalogoeqp.init(
     {
-      IDCATALOGOEQP: DataTypes.INTEGER,
+      IDCATALOGOEQP: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
       TIPOEQP: DataTypes.STRING,
       CATEGORIA: DataTypes.STRING,
     },
