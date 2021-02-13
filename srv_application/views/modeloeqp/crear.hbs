@@ -1,0 +1,71 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-dark form-card-title text-white">
+            AGREGAR MODELO DE EQUIPO A LA BASE DE DATOS
+        </div>
+        <div class="card-body">
+            
+            <form action="/modelo/crear" method="POST">
+                
+                <div class="form-group">
+                    <label for="warehouse" class="form-input-title">MARCA:</label>
+                    <select
+                        name="idmarca"
+                        id="idmarca"
+                        class="form-control"
+                    >
+                        <option value="0">Seleccione una marca</option>
+                        {{#each marcas}}
+                            <option value={{this.IDMARCA}}>{{this.MARCA}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="warehouse" class="form-input-title">MODELO:</label>
+                    <input
+                        required="true"
+                        type="text" 
+                        name="modelo" 
+                        id="modelo" 
+                        placeholder="Introduzca el nombre del modelo" 
+                        class="form-control form-input-content">
+                </div>
+
+                 <div class="form-group">
+                    <label for="warehouse" class="form-input-title">DETALLE:</label>
+                    <input
+                        required="true"
+                        type="text" 
+                        name="detalle" 
+                        id="detalle" 
+                        placeholder="Agregue detalle o caracteristica del modelo" 
+                        class="form-control form-input-content">
+                </div>
+
+                <div class="form-group">
+                    <label for="warehouse" class="form-input-title">TIPO DE EQUIPO:</label>
+                    <select
+                        name="idcatalogoeqp"
+                        id="idcatalogoeqp"
+                        class="form-control"
+                    >
+                        <option value="0">Seleccione una tipo de equipo</option>
+                        {{#each tiposequipos}}
+                            <option value={{this.IDCATALOGOEQP}}>{{this.TIPOEQP}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+               
+               <div class="form-group">
+                    <button 
+                        type="submit" 
+                        class="btn btn-success form-button-title">
+                            GUARDAR 
+                        <i class="fas fa-save"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
