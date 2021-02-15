@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const router = require("express").Router();
 const modeloeqpController = require("../controllers/modeloeqp");
 

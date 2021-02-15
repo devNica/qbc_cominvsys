@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-dark form-card-title text-white">
+            EDITAR FAMILIA DE DISPOSITIVO
+        </div>
+        <div class="card-body">
+            {{#data}}
+            
+            <form action="/familiadsp/editar/{{this.familia.IDFAMILIADSP}}" method="POST">
+           
+
+                <div class="form-group">
+                    <label for="idcatalogodsp" class="form-input-title">DISPOSITIVO:</label>
+                    <select
+                        name="idcatalogodsp"
+                        id="idcatalogodsp"
+                        class="form-control"
+                    >
+                        {{#each tipodispositivo}}
+                            {{{escogerDispositivo @idtipodsp}}}
+                        {{/each}}
+                    </select>
+                </div>
+
+                  
+                <div class="form-group">
+                    <label for="familia" class="form-input-title">FAMILIA:</label>
+                    <input
+                        required="true"
+                        type="text" 
+                        name="familia" 
+                        id="familia" 
+                        value="{{this.familia.FAMILIA}}"
+                        class="form-control form-input-content">
+                </div>
+
+                <div class="form-group">
+                    <label for="generacion" class="form-input-title">GENERACION:</label>
+                    <input
+                        required="true"
+                        type="text" 
+                        name="generacion" 
+                        id="generacion" 
+                        value="{{this.familia.GENERACION}}"
+                        class="form-control form-input-content">
+                </div>
+
+                <div class="form-group">
+                    <label for="arquitectura" class="form-input-title">ARQUITECTURA:</label>
+                    <input
+                        required="true"
+                        type="text" 
+                        name="arquitectura" 
+                        id="arquitectura" 
+                        value="{{this.familia.ARQUITECTURA}}"
+                        class="form-control form-input-content">
+                </div>
+                
+                <div class="form-group">
+                    <label for="idmarca" class="form-input-title">MARCA:</label>
+                    <select
+                        name="idmarca"
+                        id="idmarca"
+                        class="form-control"
+                    >
+                        {{#each marcas}}
+                            {{{escogerMarca @idmarca}}}
+                        {{/each}}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="idcatalogoeqp" class="form-input-title">SEGMENTO:</label>
+                    <select
+                        name="idcatalogoeqp"
+                        id="idcatalogoeqp"
+                        class="form-control"
+                    >
+                        {{#each segmento}}
+                            {{{escogerSegmento @idsegmento}}}
+                        {{/each}}
+                    </select>
+                </div>
+               
+               <div class="form-group">
+                    <button 
+                        type="submit" 
+                        class="btn btn-sm btn-outline-primary form-button-title">
+                            Guardar Informacion 
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <a href="/familiadsp/listar" class="btn btn-sm btn-outline-danger form-button-title"> Regresar </a>
+                </div>
+            </form>
+            {{/data}}
+        </div>
+    </div>
+</div>
