@@ -32,6 +32,27 @@ const hbs = exphbs.create({
       var selected = this.IDCATALOGOEQP === value ? 'selected="selected"' : '';
       return '<option value="' + this.IDCATALOGOEQP + '" ' + selected + '>' + this.TIPOEQP + '</option>';
     },
+
+    escogerSegmento: function (value) {
+      var selected = this.IDCATALOGOEQP === value ? 'selected="selected"' : '';
+      return '<option value="' + this.IDCATALOGOEQP + '" ' + selected + '>' + this.TIPOEQP + '</option>';
+    },
+
+    escogerDispositivo: function (value) {
+      var selected = this.IDCATALOGODSP === value ? 'selected="selected"' : '';
+      return '<option value="' + this.IDCATALOGODSP + '" ' + selected + '>' + this.DISPOSITIVO + '</option>';
+    },
+
+    escogerCapacidad: function(value){
+      var selected = this.IDUCAPC === value ? 'selected="selected"' : '';
+      return '<option value="' + this.IDUCAPC + '" ' + selected + '>' + this.UNIDAD + '</option>';
+    },
+
+    escogerFrecuencia: function(value){
+      var selected = this.IDUFREQ === value ? 'selected="selected"' : '';
+      return '<option value="' + this.IDUFREQ + '" ' + selected + '>' + this.UNIDAD + '</option>';
+    }
+
   },
 });
 
@@ -51,6 +72,8 @@ app.get("/index", (req, res) => {
 
 //ROUTERS
 app.use("/modelo", require("./routes/modelo"));
+app.use("/dispositivo", require("./routes/dispositivo"));
+app.use("/familiadsp", require("./routes/familiadsp"));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port:${PORT}`);

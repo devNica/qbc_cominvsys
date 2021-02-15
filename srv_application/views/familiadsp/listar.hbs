@@ -1,0 +1,41 @@
+<div class="container">
+    <h4 class="py-1 my-5 text-center text-white bg-dark">
+        LISTA DE FAMILIAS DE DISPOSITIVOS REGISTRADOS EN LA BASE DE DATOS
+    </h4>
+    <div class="border py-4 px-4 my-5">
+        <table class="table table-striped table-bordered table-sm table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-column-title text-center">#</th>
+                    <th scope="col" class="table-column-title text-center">DISPOSITIVO</th>
+                    <th scope="col" class="table-column-title text-center">MARCA</th>
+                    <th scope="col" class="table-column-title text-center">FAMILIA</th>
+                    <th scope="col" class="table-column-title text-center">GENERACION</th>
+                    <th scope="col" class="table-column-title text-center">ARQUITECTURA</th>
+                    <th scope="col" class="table-column-title text-center">SEGMENTO</th>
+                    <th scope="col" class="table-column-title text-center">OPCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#familias}}
+                <tr>
+                    <th scope="row" class="table-row-content text-center">{{this.IDFAMILIADSP}}</th>
+                    <td class="table-row-content text-center">{{this.catalogodsp.DISPOSITIVO}}</td>
+                    <td class="table-row-content text-center">{{this.marca.MARCA}}</td>
+                    <td class="table-row-content text-center">{{this.FAMILIA}}</td>
+                    <td class="table-row-content text-center">{{this.GENERACION}}</td>
+                    <td class="table-row-content text-center">{{this.ARQUITECTURA}}</td>
+                    <td class="table-row-content text-center">{{this.catalogoeqp.TIPOEQP}}</td>
+                    <td class="table-row-content">
+                        <a href="/familiadsp/editar/{{this.IDFAMILIADSP}}" class="btn btn-sm btn-outline-dark"> Editar
+                            <i class="fas fa-edit"></i></a>
+                    </td>
+                </tr>
+                {{/familias}}
+            </tbody>
+        </table>
+        <a href="/familiadsp/crear" class="btn btn-sm btn-primary form-button-title"> Crear Familia de Dispositivo <i
+                class="fas fa-plus-square"></i></a>
+        <a href="/dispositivo/listar" class="btn btn-sm btn-outline-danger form-button-title"> Regresar </a>
+    </div>
+</div>

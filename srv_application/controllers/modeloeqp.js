@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const db = require("../models");
 const modeloeqpModel = db.modeloeqp;
 const catalogoeqpModel = db.catalogoeqp;

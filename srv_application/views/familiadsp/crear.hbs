@@ -1,0 +1,97 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-dark form-card-title text-white">
+            AGREGAR FAMILIA DE DISPOSITIVO A LA BASE DE DATOS
+        </div>
+        <div class="card-body">
+            
+            <form action="/familiadsp/crear" method="POST">
+                
+                <div class="form-group">
+                    <label for="idcatalogodsp" class="form-input-title">DISPOSITIVO:</label>
+                    <select
+                        name="idcatalogodsp"
+                        id="idcatalogodsp"
+                        class="form-control"
+                    >
+                        <option value="0">Seleccione una tipo de dispositivo</option>
+                        {{#each tipodispositivo}}
+                            <option value={{this.IDCATALOGODSP}}>{{this.DISPOSITIVO}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="familia" class="form-input-title">FAMILIA:</label>
+                    <input
+                        required="true"
+                        type="text" 
+                        name="familia" 
+                        id="familia" 
+                        placeholder="Introduzca el nombre del la familia de dispositivo" 
+                        class="form-control form-input-content">
+                </div>
+
+                <div class="form-group">
+                    <label for="generacion" class="form-input-title">GENERACION:</label>
+                    <input
+                        required="true"
+                        type="text" 
+                        name="generacion" 
+                        id="generacion" 
+                        placeholder="Introduzca el nombre del la generacion de dispositivo" 
+                        class="form-control form-input-content">
+                </div>
+
+                <div class="form-group">
+                    <label for="arquitectura" class="form-input-title">ARQUITECTURA:</label>
+                    <input
+                        required="true"
+                        type="text" 
+                        name="arquitectura" 
+                        id="arquitectura" 
+                        placeholder="Introduzca la arquitectura del dispositivo" 
+                        class="form-control form-input-content">
+                </div>
+
+                <div class="form-group">
+                    <label for="idmarca" class="form-input-title">MARCA:</label>
+                    <select
+                        name="idmarca"
+                        id="idmarca"
+                        class="form-control"
+                    >
+                        <option value="0">Seleccione una marca</option>
+                        {{#each marcas}}
+                            <option value={{this.IDMARCA}}>{{this.MARCA}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="idcatalogoeqp" class="form-input-title">SEGMENTO:</label>
+                    <select
+                        name="idcatalogoeqp"
+                        id="idcatalogoeqp"
+                        class="form-control"
+                    >
+                        <option value="0">Seleccione una tipo de equipo</option>
+                        {{#each segmento}}
+                            <option value={{this.IDCATALOGOEQP}}>{{this.TIPOEQP}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+               
+               <div class="form-group">
+                    <button 
+                        type="submit" 
+                        class="btn btn-sm btn-primary form-button-title">
+                            Guardar Informacion 
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <a href="/familiadsp/listar" class="btn btn-sm btn-outline-danger form-button-title"> Regresar </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

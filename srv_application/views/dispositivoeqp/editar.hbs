@@ -1,0 +1,100 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-dark form-card-title text-white">
+            EDITAR DATOS DEL DISPOSITIVO EN LA BASE DE DATOS
+        </div>
+        <div class="card-body">
+            {{#data}}
+            {{#each dispositivo}}
+            <form action="/dispositivo/editar/{{this.IDDISPOSITIVO}}" method="POST">
+                {{/each}}
+                <table id="tablaFamilias" class="table table-striped table-bordered table-sm table-hover table-white">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>DISPOSITIVO</th>
+                            <th>MARCA</th>
+                            <th>FAMILIA</th>
+                            <th>ARQUITECTURA</th>
+                            <th>SEGMENTO</th>
+                            <th>OPCION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+
+                <div class="row my-3">
+                    {{#each dispositivo}}
+                    <div class="col-md-1">
+                        <label for="" class="font-weight-bold text-primary">ID</label>
+                        <input type="number" class="form-control form-input-content font-weight-bold" id="idfamiliadsp"
+                            autocomplete="off" name="idfamiliadsp" value="{{this.FK_FAMILIADSP}}">
+                    </div>
+                    <div class="col-md-11">
+                        <label for="familia" class="form-input-title font-weight-bold text-primary">FAMILIA:</label>
+                        <input required="true" type="text" name="familia" id="familia"
+                            class="form-control form-input-content font-weight-bold" value="{{this.FAMILIA}}">
+                    </div>
+                    {{/each}}
+                </div>
+
+                <div class="row my-3">
+                    {{#each dispositivo}}
+                    <div class="col-md-3">
+                        <label for="capacidad" class="form-input-title font-weight-bold text-primary">CAPACIDAD:</label>
+                        <input step="0.1" required="true" type="number" name="capacidad" id="capacidad"
+                            class="form-control form-input-content font-weight-bold" value="{{this.UCAP}}">
+                    </div>
+                    {{/each}}
+                    <div class="col-md-3">
+                        <label for="idcapc" class="form-input-title font-weight-bold text-primary">UNIDAD:</label>
+                        <select name="idcapc" , id="idcapc" class="form-control font-weight-bold">
+                            {{#each ucapc}}
+                            {{{escogerCapacidad @idcapacidad}}}
+                            {{/each}}
+                        </select>
+                    </div>
+                    {{#each dispositivo}}
+                    <div class="col-md-3">
+                        <label for="frecuencia"
+                            class="form-input-title font-weight-bold text-primary">FRECUENCIA:</label>
+                        <input step="0.1" required="true" type="number" name="frecuencia" id="frecuencia"
+                            class="form-control form-input-content font-weight-bold" value="{{this.UFREQ}}">
+                    </div>
+                    {{/each}}
+
+                    <div class="col-md-3">
+                        <label for="idfreq" class="form-input-title font-weight-bold text-primary">UNIDAD:</label>
+                        <select name="idfreq" , id="idfreq" class="form-control font-weight-bold">
+                            {{#each ufreq}}
+                            {{{escogerFrecuencia @idfrecuencia}}}
+                            {{/each}}
+                        </select>
+                    </div>
+
+                </div>
+
+                {{#each dispositivo}}
+                <div class="form-group my-3">
+                    <label for="modelo" class="form-input-title font-weight-bold text-primary">MODELO:</label>
+                    <input required="true" type="text" name="modelo" id="modelo"
+                        class="form-control form-input-content font-weight-bold" value="{{this.MODELO}}">
+                </div>
+                {{/each}}
+
+                {{/data}}
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-sm btn-primary form-button-title font-weight-bold">
+                        Guardar Informacion
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <a href="/dispositivo/listar"
+                        class="btn btn-sm btn-outline-danger form-button-title font-weight-bold"> Regresar </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -4,66 +4,50 @@
             AGREGAR MODELO DE EQUIPO A LA BASE DE DATOS
         </div>
         <div class="card-body">
-            
+
             <form action="/modelo/crear" method="POST">
-                
+
                 <div class="form-group">
-                    <label for="warehouse" class="form-input-title">MARCA:</label>
-                    <select
-                        name="idmarca"
-                        id="idmarca"
-                        class="form-control"
-                    >
+                    <label for="warehouse" class="form-input-title font-weight-bold text-primary">MARCA:</label>
+                    <select name="idmarca" id="idmarca" class="form-control">
                         <option value="0">Seleccione una marca</option>
                         {{#each marcas}}
-                            <option value={{this.IDMARCA}}>{{this.MARCA}}</option>
+                        <option value={{this.IDMARCA}}>{{this.MARCA}}</option>
                         {{/each}}
                     </select>
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="warehouse" class="form-input-title">MODELO:</label>
-                    <input
-                        required="true"
-                        type="text" 
-                        name="modelo" 
-                        id="modelo" 
-                        placeholder="Introduzca el nombre del modelo" 
-                        class="form-control form-input-content">
+                    <label for="warehouse" class="form-input-title font-weight-bold text-primary">MODELO:</label>
+                    <input required="true" type="text" name="modelo" id="modelo"
+                        placeholder="Introduzca el nombre del modelo" class="form-control form-input-content">
                 </div>
 
-                 <div class="form-group">
-                    <label for="warehouse" class="form-input-title">DETALLE:</label>
-                    <input
-                        required="true"
-                        type="text" 
-                        name="detalle" 
-                        id="detalle" 
-                        placeholder="Agregue detalle o caracteristica del modelo" 
+                <div class="form-group">
+                    <label for="warehouse" class="form-input-title font-weight-bold text-primary">DETALLE:</label>
+                    <input required="true" type="text" name="detalle" id="detalle"
+                        placeholder="Agregue detalle o caracteristica del modelo"
                         class="form-control form-input-content">
                 </div>
 
                 <div class="form-group">
-                    <label for="warehouse" class="form-input-title">TIPO DE EQUIPO:</label>
-                    <select
-                        name="idcatalogoeqp"
-                        id="idcatalogoeqp"
-                        class="form-control"
-                    >
+                    <label for="warehouse" class="form-input-title font-weight-bold text-primary">TIPO DE
+                        EQUIPO:</label>
+                    <select name="idcatalogoeqp" id="idcatalogoeqp" class="form-control">
                         <option value="0">Seleccione una tipo de equipo</option>
                         {{#each tiposequipos}}
-                            <option value={{this.IDCATALOGOEQP}}>{{this.TIPOEQP}}</option>
+                        <option value={{this.IDCATALOGOEQP}}>{{this.TIPOEQP}}</option>
                         {{/each}}
                     </select>
                 </div>
-               
-               <div class="form-group">
-                    <button 
-                        type="submit" 
-                        class="btn btn-success form-button-title">
-                            GUARDAR 
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm form-button-title font-weight-bold">
+                        Guardar
                         <i class="fas fa-save"></i>
                     </button>
+                    <a href="/modelo/listar" class="btn btn-sm btn-outline-danger form-button-title font-weight-bold">
+                        Regresar </a>
                 </div>
             </form>
         </div>
