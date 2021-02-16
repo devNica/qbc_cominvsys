@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       TELF: DataTypes.STRING,
       CORREO: DataTypes.STRING,
       CARGO: DataTypes.STRING,
-      SALARIO: DataTypes.DECIMAL,
+      SALARIO: DataTypes.DECIMAL(9, 2),
       ESTADO: DataTypes.BOOLEAN,
       FOTO: DataTypes.BLOB,
       FK_UBQEMP: DataTypes.INTEGER,
