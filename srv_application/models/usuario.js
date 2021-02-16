@@ -13,6 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       usuario.hasMany(models.consecutivo, {
         foreignKey: "FK_USUARIO",
       });
+
+      usuario.hasMany(models.usuario_modulo, {
+        foreignKey: "FK_USUARIO"
+      });
+
+      usuario.hasMany(models.usuario_perfil, {
+        foreignKey: "FK_USUARIO"
+      });
+
     }
   }
   usuario.init(
