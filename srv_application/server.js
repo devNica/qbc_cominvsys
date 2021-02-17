@@ -70,10 +70,14 @@ app.get("/index", (req, res) => {
   res.render("templates/index");
 });
 
+//ENPOINTS
+const userRouter = require("./routes/usuario");
+
 //ROUTERS
-app.use("/modelo", require("./routes/modelo"));
-app.use("/dispositivo", require("./routes/dispositivo"));
-app.use("/familiadsp", require("./routes/familiadsp"));
+// app.use("/api/modelo", require("./routes/modelo"));
+// app.use("/api/dispositivo", require("./routes/dispositivo"));
+// app.use("/api/familiadsp", require("./routes/familiadsp"));
+app.use("/api", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port:${PORT}`);
