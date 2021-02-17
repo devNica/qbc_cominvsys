@@ -1,4 +1,4 @@
-const { QueryTypes, json } = require("sequelize");
+const { QueryTypes } = require("sequelize");
 const { sequelize } = require("../models");
 const { listar } = require("../queries/dispositivoQueries");
 
