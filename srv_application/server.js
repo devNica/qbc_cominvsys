@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const exphbs = require("express-handlebars");
+const fileupload = require("express-fileupload");
 const path = require("path");
 const cors = require("cors");
 
@@ -62,6 +63,7 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "/public")));
 
 /**MIDDLEWARES*/
+app.use(fileupload());
 app.use(bodyparser.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));

@@ -32,7 +32,7 @@ const Navbar = ({fxLogout, history, user}) =>{
     const guestLink = (
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-                <Link className="nav-link font-weight-bold text-white" to="/Login">INICIAR SESION</Link>
+                <Link className="nav-link font-weight-bold text-white" to="/login">INICIAR SESION</Link>
             </li>
         </ul>
     )

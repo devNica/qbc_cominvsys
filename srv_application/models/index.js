@@ -65,12 +65,12 @@ db.Sequelize = Sequelize;
 //     console.log(`the models has been updated`);
 //   })
 
-sequelize
-  .authenticate()
-  .then(()=>{
-    console.log(`Database connection has successfully`)
-  }).catch(err=>{
-    console.log(`Database connection failed: ${err}`)
-  })
+// sequelize
+//   .authenticate()
+//   .then(()=>{
+//     console.log(`Database connection has successfully`)
+//   }).catch(err=>{
+//     console.log(`Database connection failed: ${err}`)
+//   })
 
 module.exports = db;
