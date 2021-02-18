@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       PASSWORD: DataTypes.STRING,
       TOKEN: DataTypes.STRING,
       ESTADO: DataTypes.BOOLEAN,
+      FOTO: DataTypes.BLOB("medium"),
       FK_EMPLEADO: DataTypes.INTEGER,
     },
     {

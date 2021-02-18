@@ -5,6 +5,18 @@ const usuarioModel = db.usuario;
 const { sesion } = require("../queries/usuarioQueries");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+const knex = require("knex")({
+  client: "mysql",
+  version: "7.4.9-0",
+  connection: {
+    host: "127.0.0.1",
+    user: "root",
+    password: "windows",
+    database: "qbc_cominvsys",
+  },
+});
+
 require("dotenv").config();
 
 const usuarioConrtoller = {
@@ -50,7 +62,7 @@ const usuarioConrtoller = {
 
   registar: async (req, res) => {
     let nuevousuario = {
-      USERNAME: "LMARSELL2",
+      USERNAME: "LMARSELL",
       PASSWORD: "lamisma123",
       TOKEN: "",
       ESTADO: 1,
@@ -75,6 +87,7 @@ const usuarioConrtoller = {
           .then((usuario) => {
             res.json({ usuario });
           })
+          // eslint-disable-next-line no-unused-vars
           .catch((err) =>
             res.status(200).json({
               msg: "Ocurrio un error al intentar guardar los datos del usuario",
@@ -82,6 +95,32 @@ const usuarioConrtoller = {
           );
       }
     });
+  },
+
+  uploadImage: async (req, res) => {
+    if (req.files) {
+      // eslint-disable-next-line no-unused-vars
+      const { name, data } = req.files.img;
+      await knex("usuario")
+        .update({ FOTO: data })
+        .where({ IDUSUARIO: req.body.IDUSUARIO });
+      res.status(200).json({ flag: true, msg: "La imagen ha sido cambiada" });
+    } else {
+      res.status(200).json({ flag: false, msg: "No se encontro el archivo" });
+    }
+  },
+
+  dowloadImage: async (req, res) => {
+    let IDUSUARIO = req.body.IDUSUARIO;
+    console.log(`IDUSUARIO: ${IDUSUARIO}`);
+    const usuario = await usuarioModel.findAll({ where: { IDUSUARIO } });
+    if (usuario[0].FOTO) {
+      res.status(200).json({ flag: true, photo: usuario[0].FOTO });
+    } else {
+      res
+        .status(200)
+        .json({ flag: false, msg: `No se encontraron resultados` });
+    }
   },
 };
 

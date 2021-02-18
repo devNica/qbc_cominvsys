@@ -10,7 +10,7 @@ const usuarioQueries = {
             PF.IDPERFIL,
             PF.PERFIL,
             PF.ESTADO AS ESTADOPERFIL,
-            GROUP_CONCAT(DISTINCT(TP.TIPO))AS PERMISO,
+            GROUP_CONCAT(DISTINCT(CONCAT(TP.TIPO,'-',MD.MODULO)))AS PERMISO,
             GROUP_CONCAT(DISTINCT(MD.MODULO)) AS MODULO
 
             FROM usuario AS USR

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import {CREATE_NOTIFICATION} from "../actions/types";
+import { CREATE_NOTIFICATION } from "../actions/types";
 
 const initialState = {
     note: {
@@ -9,8 +9,8 @@ const initialState = {
     },
 }
 
-export default function(state=initialState, action){
-    switch(action){
+export default function (state = initialState, action){
+    switch(action.type){
         case CREATE_NOTIFICATION:
             return {
                 ...state,

@@ -7,3 +7,11 @@ export default {
             axios.post('/api/user/login', credentials).then(res => res.data), 
     }
 }
+
+export const uploadImage = data =>{
+    return axios.post("/api/user/uploadimage", data).then(res => res.data)
+}
+
+export const downloadImage = data =>{
+    return axios.post("/api/user/downloadimage", data).then(res => res.data)
+}
