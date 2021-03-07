@@ -14,10 +14,9 @@ export const fxLogin = credentials => (dispatch) => {
     api.user.login(credentials)
     .then(response => {
         /**SI LAS CREDENCIALES SON CORRECTAS*/
-        console.log(response)
         if(response.flag){
             let user = response.usuario[0];
-            let token = user.TOKEN;
+            let token = response.token;
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: {
@@ -25,6 +24,15 @@ export const fxLogin = credentials => (dispatch) => {
                     token
                 }
             });
+
+            dispatch({
+                type: CREATE_NOTIFICATION,
+                payload: {
+                    msg: "Bienvenido",
+                    type: "success",
+                    time: 2500
+                }
+            })
         }
         /**SI LAS CREDENCIALES FALLAN */
         else{
@@ -33,7 +41,12 @@ export const fxLogin = credentials => (dispatch) => {
             })
 
             dispatch({
-                type: CREATE_NOTIFICATION
+                type: CREATE_NOTIFICATION,
+                payload: {
+                    msg: response.msg,
+                    type: "danger",
+                    time: 2500
+                }
             })
         }
         
@@ -42,7 +55,6 @@ export const fxLogin = credentials => (dispatch) => {
 }
 
 export const fxLogout = () =>(dispatch)=>{
-    console.log("quiero salir de la sesion")
     dispatch({
         type: LOGOUT
     });

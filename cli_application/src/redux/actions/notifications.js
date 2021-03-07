@@ -1,8 +1,9 @@
 import { CREATE_NOTIFICATION } from "./types";
 
-export const fxUpdateProfileImage = (data) => (dispatch)=>{
+export const fn_create_notification = (data) => (dispatch)=>{
     dispatch({
         type: CREATE_NOTIFICATION,
         payload: data
     });
 }
+

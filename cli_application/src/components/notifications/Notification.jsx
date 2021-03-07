@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import {connect} from 'react-redux';
 import {store} from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
-import 'animate.css'
+import 'animate.css/animate.compat.css';
+//import 'animate.css'
 
 const mapStateToProps = state =>({
     note_fr : state.notifications.note

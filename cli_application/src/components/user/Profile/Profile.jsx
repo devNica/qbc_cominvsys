@@ -4,7 +4,6 @@ import React, {Fragment } from 'react';
 import { connect } from 'react-redux';
 import AdminPanel from '../../panel/AdminPanel';
 //import NotificacionProceso from '../../notifications/NotificacionProceso';
-import Notification from "../../notifications/Notification";
 
 import AddTwoToneIcon from '@material-ui/icons/AddTwoTone';
 import { useState, useEffect } from 'react';
@@ -14,9 +13,10 @@ import { downloadImage } from '../../../api/api'
 
 const mapStateToProps = state => ({
     user_fr: state.auth.user,
+    token_fr: state.auth.token
 })
 
-const Profile = ({user_fr}) =>{
+const Profile = ({user_fr, token_fr}) =>{
 
     const [statusImg, setStatusImg] = useState(false)
     const [profileImg, setImg] = useState('')
@@ -29,7 +29,7 @@ const Profile = ({user_fr}) =>{
     };
 
     useEffect(()=>{
-        downloadImage({IDUSUARIO: user_fr.IDUSUARIO}).then(response=>{
+        downloadImage({IDUSUARIO: user_fr.IDUSUARIO, token: token_fr}).then(response=>{
             
             if(response.flag){
                 let imgStrs = arrayBufferToBase64(response.photo.data)
@@ -86,7 +86,6 @@ const Profile = ({user_fr}) =>{
         <div className="wrapper">
             {dashboard}
             {/* <NotificacionProceso/> */}
-            <Notification/>
         </div>
     );
     

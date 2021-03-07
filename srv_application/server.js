@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 const express = require("express");
-const bodyparser = require("body-parser");
 const exphbs = require("express-handlebars");
 const fileupload = require("express-fileupload");
 const path = require("path");
@@ -64,8 +63,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 /**MIDDLEWARES*/
 app.use(fileupload());
-app.use(bodyparser.json());
-app.use(cors());
+app.use(express.json());
+app.use(cors({origin: `http://localhost:3000`}));
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/index", (req, res) => {
