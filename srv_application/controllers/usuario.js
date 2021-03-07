@@ -33,17 +33,18 @@ const usuarioConrtoller = {
       .then((usuario) => {
         if (usuario[0].IDUSUARIO) {
           if (bcrypt.compareSync(data.password, usuario[0].PASSWORD)) {
-            // let token = jwt.sign(
-            //   { data: `${usuario[0].username}` },
-            //   process.env.SECRET_KEY,
-            //   { expiresIn: 1800 }
-            // );
+            let token = jwt.sign(
+              { data: `${usuario[0].username}` },
+              process.env.SECURITY_TOKEN_PRIVATE_ROUTES,
+              { expiresIn: "8h" }
+            );
+
             let PERMISO = usuario[0].PERMISO.split(",");
             let MODULO = usuario[0].MODULO.split(",");
             usuario[0].PERMISO = PERMISO;
             usuario[0].MODULO = MODULO;
 
-            res.status(200).json({ usuario, flag: true });
+            res.status(200).json({ usuario, flag: true, token });
           } else {
             res.json({
               msg: `la contraseña introducida es incorrecta`,
@@ -52,7 +53,7 @@ const usuarioConrtoller = {
           }
         } else {
           res.json({
-            msg: `No se encontro ningun registro del usuario:${data.username}`,
+            msg: `No se encontro ninguna cuenta con el username: ${data.username}`,
             flag: false,
           });
         }
@@ -104,9 +105,12 @@ const usuarioConrtoller = {
       await knex("usuario")
         .update({ FOTO: data })
         .where({ IDUSUARIO: req.body.IDUSUARIO });
-      res.status(200).json({ flag: true, msg: "La imagen ha sido cambiada" });
+      res.json({
+        success: true,
+        message: "La imagen del perfil ha sido cambiada",
+      });
     } else {
-      res.status(200).json({ flag: false, msg: "No se encontro el archivo" });
+      res.json({ succcess: false, message: "No se encontro el archivo" });
     }
   },
 

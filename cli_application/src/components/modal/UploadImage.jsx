@@ -1,14 +1,13 @@
 import React, {useState } from 'react';
 import { uploadImage } from '../../api/api';
 import {connect} from 'react-redux';
-import { fxUpdateProfileImage } from "../../redux/actions/notifications";
-//import Notification from "../notifications/Notification";
+import { fn_create_notification } from "../../redux/actions/notifications";
 
 const mapStateToProps = state =>({
-    
+    token_fr: state.auth.token
 })
 
-const UploadImage = ({IDUSUARIO, fxUpdateProfileImage}) => {
+const UploadImage = ({IDUSUARIO, fn_create_notification, token_fr}) => {
 
     const [fileSelected, setFile] = useState('');
     
@@ -42,31 +41,45 @@ const UploadImage = ({IDUSUARIO, fxUpdateProfileImage}) => {
             const fd = new FormData();
             fd.append('img', fileSelected, fileSelected.name);
             fd.append('IDUSUARIO', IDUSUARIO)
+            fd.append("token",token_fr);
         
-            uploadImage(fd).then(res=>{
-                console.log(res)
-                const notification = {
-                    msg: "La imagen del perfil del usuario ha sido cambiada",
-                    type: "success",
-                    time: 1200
-                }
+            uploadImage(fd).then(response=>{
                 
-                fxUpdateProfileImage(notification);
+                const {success, message} = response;
 
-                setTimeout(()=>{
-                    window.history.go(0);
-                },1250)
-                
-                
+                if(success){
+                    const notification = {
+                        msg: message,
+                        type: "success",
+                        time: 2500
+                    }
+                   
+                    setTimeout(()=>{
+                        window.history.go(0);
+                    },3100)
+
+                    fn_create_notification(notification);
+
+                }else{
+                    
+                    const notification = {
+                        msg: message,
+                        type: "danger",
+                        time: 2500
+                    }
+
+                    fn_create_notification(notification);
+                }
             });
+            
         }else{
             const notification = {
                 msg: "No se ha seleccionado una imagen",
                 type: "danger",
-                time: 1400
+                time: 1800
             }
             
-            fxUpdateProfileImage(notification);
+            fn_create_notification(notification);
 
         }
     }
@@ -125,23 +138,13 @@ const UploadImage = ({IDUSUARIO, fxUpdateProfileImage}) => {
                     
 
                 </div>
-                {/* <div className="modal-footer">
-                    <button 
-                        type="button"
-                        className="btn btn-secondary" 
-                        data-dismiss="modal"
-                        
-                    >
-                    Close
-                    </button>
-                    
-                </div> */}
+                
                 </div>
             </div>
-            {/* <Notification/> */}
+            
         </div>
     );
     
 }
 
-export default connect(mapStateToProps,{ fxUpdateProfileImage })(UploadImage);
+export default connect(mapStateToProps,{ fn_create_notification })(UploadImage);
