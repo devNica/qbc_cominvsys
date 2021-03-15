@@ -45,7 +45,7 @@ const Profile = ({user_fr, token_fr}) =>{
             }
         }).catch(error=>console.log(error))
 
-    },[user_fr])
+    },[user_fr, token_fr])
 
     
     

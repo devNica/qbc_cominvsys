@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import {connect} from 'react-redux';
 import {store} from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
@@ -11,7 +11,7 @@ const mapStateToProps = state =>({
 
 const Notification = ({note_fr}) => {
 
-    const createNotifiacion = (message, type, title, duration) =>{
+    const createNotifiacion = useCallback((message, type, title, duration) =>{
         store.addNotification({
             title,
             message,
@@ -24,14 +24,14 @@ const Notification = ({note_fr}) => {
             },
 
         })
-    }
+    },[])
 
     useEffect(()=>{
         if(note_fr.msg){
             createNotifiacion(note_fr.msg, note_fr.type, '', note_fr.time);
         }
         
-    },[note_fr])
+    },[note_fr, createNotifiacion])
 
     return (
         <div/>

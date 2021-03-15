@@ -1,43 +1,11 @@
 import React from 'react';
 import {withRouter, Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import { fxLogout } from '../../redux/actions/auth';
+import GuestLink from './GuestLink';
 import './navbar.css'
+import UserLink from './UserLink';
 
-const mapStateToProps = state =>({
-    isAuthenticated : state.auth.isAuthenticated,
-    user: state.auth.user
-})
+const Navbar = ({history}) =>{
 
-const Navbar = ({fxLogout, history, user}) =>{
-
-    const handleUserLogout = e => {
-        e.preventDefault();
-        fxLogout();
-        history.push('/');
-    }
-
-    const userLink = (
-        <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-                <Link className="nav-link font-weight-bold text-white" to="/profile">PROFILE</Link>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link font-weight-bold text-white" href="null" onClick={ handleUserLogout }>SALIR</a>
-            </li>
-
-        </ul>
-    )
-
-    const guestLink = (
-        <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-                <Link className="nav-link font-weight-bold text-white" to="/login">INICIAR SESION</Link>
-            </li>
-        </ul>
-    )
-        
-        
     return (
         <nav className="navbar navbar-expand-lg navbar-dark background-navbar">
             <Link className="navbar-brand" to="/">Syswork20R</Link>
@@ -46,16 +14,12 @@ const Navbar = ({fxLogout, history, user}) =>{
                 <span className="navbar-toggler-icon"></span>
             </button>
 
-            
             <div className="collapse navbar-collapse" id="basicExampleNav">
-
-                
-            {localStorage.token ? userLink : guestLink}
-                
+                {localStorage.token ? <UserLink history={history}/> : <GuestLink/>}
             </div>
-            </nav>
+        </nav>
     );
     
 }
 
-export default connect(mapStateToProps,{fxLogout})(withRouter(Navbar));
+export default withRouter(Navbar);
