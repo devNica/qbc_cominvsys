@@ -1,8 +1,10 @@
-import React, { useState} from 'react';
+import React,{ useCallback } from 'react';
 //import { MDBContainer, MDBRow, MDBCol} from 'mdbreact';
 import {connect} from 'react-redux';
 import { fxLogin } from '../../redux/actions/auth';
 import { fn_create_notification } from "../../redux/actions/notifications";
+import LoginForm from './LoginForm';
+import "./Login.css"
 
 const mapStateToProps = state =>({
     isAuthenticated: state.auth.isAuthenticated
@@ -11,17 +13,13 @@ const mapStateToProps = state =>({
 const Login = (props) => {
 
     const {isAuthenticated, fxLogin, history, fn_create_notification } = props;
-    const [inputs, setInputs] = useState({username: "", password: ""});
-    const {username, password} = inputs;
     
-    const handleOnChange=e=>{
-        const {name, value} = e.target;
-        setInputs(inputs =>({...inputs, [name]: value}));
-        
-    }
+    /*El hook useCallback es utilizado para evitar que la funcion se cree cada
+    vez que el componente se renderiza nuevamenete, de esta forma
+    solo se va volver a crear si sus dependencias cambian*/
+    const handleOnSubmit = useCallback (data =>{
 
-    const handleOnSubmit = e =>{
-        e.preventDefault();
+        const {username, password} = data;
 
         let msg, count, error;
         error = false;
@@ -63,50 +61,14 @@ const Login = (props) => {
             });
         }
    
-    }
+    },[fxLogin, history, isAuthenticated, fn_create_notification])
 
     return (
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-3"/>
                 <div className="col-md-6">
-                    <div className="card">
-                        <div className="card-header background-card-header text-white font-weight-bold">
-                            INICIAR SESION
-                        </div>
-                        <div className="card-body">
-
-                            <form onSubmit={handleOnSubmit}>
-                                <label htmlFor="username" className="grey-text">
-                                USERNAME
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="username" 
-                                    className="form-control" 
-                                    name='username'
-                                    onChange={handleOnChange}
-                                    value={username}
-                                    autoComplete='off'
-                                />
-                                <br />
-                                <label htmlFor="password" className="grey-text">
-                                PASSWORD
-                                </label>
-                                <input 
-                                    type="password" 
-                                    id="password" 
-                                    className="form-control" 
-                                    name="password"
-                                    onChange={handleOnChange}
-                                    value={password}
-                                />
-                                <div className="text-center mt-4">
-                                <button className="btn" style={{ background: '#3a3f80ef', color: '#ffffff'}}>LOGIN</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <LoginForm onSubmit={handleOnSubmit}/>
                 </div>
             </div>
         </div>

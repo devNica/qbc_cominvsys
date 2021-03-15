@@ -1,0 +1,12 @@
+.login-btn {
+  background-color: #3a3f80ef;
+  color: #ffffff;
+  padding: 0.6em 0;
+}
+
+.login-btn:hover {
+  /* color: #3a3f80ef;
+  background-color: rgb(255, 255, 255); */
+  color: aliceblue;
+  background-color: #22255cef;
+}

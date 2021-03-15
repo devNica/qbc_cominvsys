@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { uploadImage } from '../../api/api';
 import {connect} from 'react-redux';
 import { fn_create_notification } from "../../redux/actions/notifications";
@@ -11,7 +11,7 @@ const UploadImage = ({IDUSUARIO, fn_create_notification, token_fr}) => {
 
     const [fileSelected, setFile] = useState('');
     
-    const fileSelecttedHandler = e =>{
+    const fileSelecttedHandler = (e) =>{
         let files = e.target.files[0];
         var reader = new FileReader();
 
@@ -31,8 +31,6 @@ const UploadImage = ({IDUSUARIO, fn_create_notification, token_fr}) => {
         else {
             alert(`El archivo seleccionado no coincide con el formato PNG`)
         }
-
-        
     }
 
     const fileUploadHandler = e =>{
