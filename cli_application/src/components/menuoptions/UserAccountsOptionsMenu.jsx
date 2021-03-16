@@ -6,7 +6,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import {Link} from 'react-router-dom'
 
 
-const UserAccountsOptionsMenu = () =>{
+const UserAccountsOptionsMenu = ({permissions_fc}) =>{
 
     const handleOnClick = useCallback( (evt) =>{
         evt.preventDefault();
@@ -20,12 +20,14 @@ const UserAccountsOptionsMenu = () =>{
                     <AccountBoxIcon  style={{ color: "#5094de"}} fontSize="small"/> Usuarios
                 </a>
                 <div className="dropdown-menu" aria-labelledby="user-module-dropdown">
+                    {permissions_fc.includes('EDITAR-USER_ACCOUNTS') ? 
                     <Link  role="button" className="elemento-hijo h5 text-dark" name="LISTAR-USER_ACCOUNTS" to='/useraccounts/listaccounts'>
                         <DnsIcon  style={{ color: "#5094de"}} fontSize="small"/> Registros
-                    </Link>
+                    </Link> : null }
+                    {permissions_fc.includes('CREAR-USER_ACCOUNTS') ? 
                     <Link role="button" className="elemento-hijo h5 text-dark" name="CREAR-USER_ACCOUNTS" to='/useraccounts/addaccount'> 
                         <PersonAddIcon  style={{ color: "#5094de"}} fontSize="small"/> Agregar Usuario
-                    </Link>
+                    </Link> : null }
                 </div>
             </div>
         </Fragment>

@@ -1,19 +1,25 @@
 import React, {} from 'react'
 import {Link} from 'react-router-dom'
-
+import './Denied.css'
 
 const Denied = () =>{
-    return (
-        <div className="container">
-            <div className="py-3 px-3">
-                <div class="jumbotron">
-                    <h1 class="display-4">¡Aviso!</h1>
-                    <hr class="my-4"/>
-                    <p>El usuario no cuenta con los permisos requeridos para acceder a este modulo</p>
-                    <Link class="btn btn-primary btn-lg" role="button" to='/profile'>Ir al Perfil</Link>
+
+    const Message = (
+        <div className="container mt-5">
+            <div className="jumbotron text-white">
+                <h1 className="display-4">¡Aviso!</h1>
+                <p className="lead">
+                    No dispone de los permisos necesarios para acceder a esta vista, porque no ha iniciado sesion
+                </p>
+                <div className="mt-4">
+                    <Link className="enlaceboton" to="/login" >Iniciar Sesion</Link>
                 </div>
             </div>
         </div>
+    )
+
+    return (
+        Message
     )
 }
 

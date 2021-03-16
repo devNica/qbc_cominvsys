@@ -5,6 +5,11 @@ export default {
     user: {
         login: credentials =>
             axios.post('/api/user/login', credentials).then(res => res.data), 
+    },
+
+    useraccounts: {
+        list: token =>
+            axios.post('/api/useraccounts/list', token).then(res => res.data),
     }
 }
 

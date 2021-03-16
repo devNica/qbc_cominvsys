@@ -4,7 +4,7 @@ import './Adminpanel.css';
 import UserAccountsOptionsMenu from '../menuoptions/UserAccountsOptionsMenu';
 import AdministrationOptionsMenu from '../menuoptions/AdministrationOptionsMenu';
 
-const AdminPanel = ({modules}) => {
+const AdminPanel = ({modules, permissions}) => {
     
     const [userModules, setModules] = useState([]);
 
@@ -18,7 +18,7 @@ const AdminPanel = ({modules}) => {
             <h5 className="font-weight-bold text-uppercase pt-2" style={{color: "#196ac2"}}>MODULOS</h5>
             { 
                 userModules !== undefined && userModules.length > 0 ?
-                    userModules.find(module => module === 'USER_ACCOUNTS') ? <UserAccountsOptionsMenu/> : null
+                    userModules.find(module => module === 'USER_ACCOUNTS') ? <UserAccountsOptionsMenu permissions_fc={permissions}/> : null
                 : null
             
             }
