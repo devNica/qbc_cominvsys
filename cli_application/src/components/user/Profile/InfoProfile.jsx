@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Fragment } from 'react'
 
 import AddTwoToneIcon from '@material-ui/icons/AddTwoTone';
@@ -12,12 +12,12 @@ const InfoProfile = ({user_fc, token_fc})=>{
     const [statusImg, setStatusImg] = useState(false)
     const [profileImg, setImg] = useState('')
 
-    const arrayBufferToBase64 = (buffer) =>{
+    const arrayBufferToBase64 = useCallback( (buffer) =>{
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));   
         bytes.forEach((b) => binary += String.fromCharCode(b));    
         return window.btoa(binary);
-    };
+    },[]);
 
     const handleOnClick = evt =>{
         evt.preventDefault();
@@ -40,7 +40,7 @@ const InfoProfile = ({user_fc, token_fc})=>{
             }
         }).catch(error=>console.log(error))
 
-    },[user_fc, token_fc])
+    },[user_fc, token_fc, arrayBufferToBase64])
 
     return(
     <Fragment>
