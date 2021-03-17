@@ -1,0 +1,10 @@
+input {
+    text-transform: uppercase;
+}
+
+.confirm{
+    padding: 0.1em 0.1em !important;
+    color: rgb(206, 95, 123) !important;
+    font-weight: 600;
+    border-bottom: 0.25em solid rgb(157, 192, 219) !important;
+}

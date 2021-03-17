@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {MDBDataTable} from 'mdbreact';
 import {connect} from 'react-redux';
-import {useraccounts_model} from '../models/useraccounts';
+import {employee_model} from '../models/employee';
 import {Link} from 'react-router-dom';
 
 const mapStateToProps = state=>({
-    accounts: state.useraccounts.accounts
+    employees: state.useraccounts.employees
 })
 
 const opciones = (data)=>{
@@ -15,7 +15,7 @@ const opciones = (data)=>{
             <Link 
                 className="btn btn-sm btn-outline-dark mx-1" 
                 //value={accounts.data.rows[i].IDUSUARIO} 
-                to={`/useraccount/admin/${data.IDUSUARIO}`}
+                to={`/employee/admin/${data.IDEMPLEADO}`}
                 >Administrar
             </Link>
         </div>
@@ -25,30 +25,31 @@ const opciones = (data)=>{
     
 }
 
-const UserAccountsDT = (props)=>{
-    const {accounts} = props;
-    const [data, setData] = useState(useraccounts_model([]).data)
+const EmployeeDT = (props)=>{
+    const {employees, selectRow} = props;
+    const [data, setData] = useState(employee_model([]).data)
 
     
-    const handleOnClick = useCallback((e)=>{
-        console.log(e)
+    const handleOnClick = useCallback((data)=>{
+      
+        selectRow({fk_empleado: data.IDEMPLEADO, nombre: data.NOMBRECOMPLETO})
        
-    },[])
+    },[selectRow])
 
     
     useEffect(()=>{
         
-        if(accounts.data !== undefined){
+        if(employees.data !== undefined){
 
             let func='clickEvent'
-            for(let i=0; i<accounts.data.rows.length; i++){
-                Object.defineProperty(accounts.data.rows[i], func, {value: handleOnClick, configurable: true})
-                Object.defineProperty(accounts.data.rows[i], 'OPCIONES', { value: opciones(accounts.data.rows[i]), configurable: true})   
+            for(let i=0; i<employees.data.rows.length; i++){
+                Object.defineProperty(employees.data.rows[i], func, {value: handleOnClick, configurable: true})
+                Object.defineProperty(employees.data.rows[i], 'OPCIONES', { value: opciones(employees.data.rows[i]), configurable: true})   
             }
-            setData(accounts.data);
+            setData(employees.data);
         }
                
-    },[accounts, handleOnClick])
+    },[employees, handleOnClick])
 
     return (
         <div className="container my-2 py-3">
@@ -65,4 +66,4 @@ const UserAccountsDT = (props)=>{
     
 }
 
-export default connect(mapStateToProps)(UserAccountsDT);
+export default connect(mapStateToProps)(EmployeeDT);

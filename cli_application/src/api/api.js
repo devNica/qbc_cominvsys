@@ -10,6 +10,11 @@ export default {
     useraccounts: {
         list: token =>
             axios.post('/api/useraccounts/list', token).then(res => res.data),
+    },
+
+    employee:  {
+        list: token =>
+            axios.post('/api/employee/list', token).then(res => res.data)
     }
 }
 
