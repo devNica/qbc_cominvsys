@@ -1,27 +1,30 @@
 import React,{useEffect} from 'react'
-import './UserAccountsListPage.css'
 import {connect} from 'react-redux';
-import {fx_listUserAccounts} from '../../redux/actions/useraccounts'
+import {fx_listUserAccounts, fxCLearListUserAccounts} from '../../redux/actions/useraccounts'
 import UserAccountsDT from '../datatables/UserAccountsDT';
+import HeaderPage from './HeaderPage';
 
 const mapStateToProps = state => ({
     token_fr: state.auth.token
 });
 
-const UserAccountsListPage = ({token_fr, fx_listUserAccounts}) =>{
+const UserAccountsListPage = ({token_fr, fx_listUserAccounts, fxCLearListUserAccounts}) =>{
     
     useEffect(()=>{
         fx_listUserAccounts({token: token_fr})
-    },[fx_listUserAccounts, token_fr])
+
+        return ()=> fxCLearListUserAccounts();
+
+    },[fx_listUserAccounts, token_fr, fxCLearListUserAccounts])
     
     return(
         <div>
-            <h4 className="title-module">Lista de Cuentas de Usuario</h4>
+            <HeaderPage title="Listar Cuentas de Usuario"/>
             <UserAccountsDT/>
         </div>
     )
 }
 
 
-export default connect(mapStateToProps,{fx_listUserAccounts})(UserAccountsListPage);
+export default connect(mapStateToProps,{fx_listUserAccounts, fxCLearListUserAccounts})(UserAccountsListPage);
 

@@ -74,6 +74,7 @@ app.get("/index", (req, res) => {
 //ENPOINTS
 const userRouter = require("./routes/usuario");
 const accountsRouter = require('./routes/useraccounts');
+const empleadoRouter = require('./routes/empleado');
 
 
 //ROUTERS
@@ -82,6 +83,7 @@ const accountsRouter = require('./routes/useraccounts');
 // app.use("/api/familiadsp", require("./routes/familiadsp"));
 app.use("/api", userRouter);
 app.use('/api', accountsRouter);
+app.use('/api', empleadoRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port:${PORT}`);
